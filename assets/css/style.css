@@ -311,3 +311,19 @@ section {
     color: #ff5f5f;
     transform: scale(1.2);
 }
+.cart-feedback {
+    position: fixed;
+    bottom: 120px;
+    right: 40px;
+    background: rgba(0,0,0,0.7);
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    opacity: 0;
+    transition: var(--transition-medium);
+    pointer-events: none;
+}
+
+.cart-feedback.show {
+    opacity: 1;
+}
