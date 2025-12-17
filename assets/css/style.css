@@ -1,1 +1,48 @@
+:root {
+    /* Cores principais */
+    --color-bg: #0f0f0f;
+    --color-card: #181818;
+    --color-primary: #8e2de2;
+    --color-primary-hover: #a855f7;
+    --color-text: #ffffff;
+    --color-muted: #b3b3b3;
+
+    /* Fontes */
+    --font-main: 'Inter', sans-serif;
+
+    /* Bordas e sombras */
+    --radius: 12px;
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.4);
+
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.4s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    animation: fadeUp 1s ease forwards;
+}
 
