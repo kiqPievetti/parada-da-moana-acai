@@ -216,3 +216,40 @@ section {
     color: var(--color-primary);
     font-weight: 700;
 }
+
+.build-acai {
+    max-width: 900px;
+    margin: auto;
+}
+
+.step {
+    margin-bottom: 50px;
+}
+
+.options {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.option {
+    padding: 14px 22px;
+    background: var(--color-card);
+    border-radius: 14px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: var(--transition-medium);
+}
+
+.option:hover,
+.option.active {
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.addon {
+    background: var(--color-card);
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+}
