@@ -132,9 +132,12 @@ function updateCart() {
         div.classList.add("cart-item");
 
         div.innerHTML = `
-            <strong>${item.size.label}</strong>
+            <div class="cart-item-header">
+                <strong>${item.size.label}</strong>
+                <button class="remove-btn" data-index="${index}">✕</button>
+            </div>
             <p>${item.base}</p>
-            <small>${item.addons.map(a => a.name).join(", ")}</small>
+            <small>${item.addons.map(a => a.name).join(", ") || "Sem adicionais"}</small>
             <span>${item.total.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL"
@@ -148,5 +151,19 @@ function updateCart() {
         style: "currency",
         currency: "BRL"
     });
+
+    attachRemoveEvents();
 }
+
+function attachRemoveEvents() {
+    document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const index = btn.dataset.index;
+            cartState.items.splice(index, 1);
+            updateCart();
+        });
+    });
+}
+
+
 
