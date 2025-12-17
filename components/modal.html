@@ -1,1 +1,33 @@
+<section class="checkout">
+    <h2 class="section-title">Finalizar Pedido</h2>
+
+    <!-- TIPO DE ENTREGA -->
+    <div class="checkout-step">
+        <h3>Como você quer receber?</h3>
+        <div class="options">
+            <button class="option active" data-type="delivery">Entrega</button>
+            <button class="option" data-type="pickup">Retirada no local</button>
+        </div>
+    </div>
+
+    <!-- ENDEREÇO -->
+    <div class="checkout-step" id="address-section">
+        <h3>Endereço de entrega</h3>
+
+        <input type="text" placeholder="Rua e número" id="street">
+        <input type="text" placeholder="Bairro" id="district">
+        <input type="text" placeholder="CEP" id="zipcode">
+        <input type="text" placeholder="Complemento (opcional)" id="extra">
+    </div>
+
+    <!-- RESUMO -->
+    <div class="checkout-summary">
+        <span>Total do pedido</span>
+        <strong id="checkout-total">R$ 0,00</strong>
+    </div>
+
+    <button class="btn-primary checkout-btn">
+        Confirmar pedido
+    </button>
+</section>
 
