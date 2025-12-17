@@ -193,4 +193,75 @@ function showFeedback() {
     }, 1500);
 }
 
+const checkoutState = {
+    type: "delivery", // delivery | pickup
+    address: {}
+};
+
+const checkoutOptions = document.querySelectorAll(".checkout .option");
+const addressSection = document.getElementById("address-section");
+
+checkoutOptions.forEach(btn => {
+    btn.addEventListener("click", () => {
+        checkoutOptions.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        checkoutState.type = btn.dataset.type;
+
+        addressSection.style.display =
+            checkoutState.type === "delivery" ? "block" : "none";
+    });
+});
+
+const checkoutTotalEl = document.getElementById("checkout-total");
+
+function updateCheckoutTotal() {
+    let total = cartState.total;
+
+    if (checkoutState.type === "delivery") {
+        total += 5; // taxa fixa simples (podemos evoluir depois)
+    }
+
+    checkoutTotalEl.innerText = total.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+document.querySelector(".checkout-btn").addEventListener("click", () => {
+    if (cartState.items.length === 0) {
+        alert("Seu carrinho está vazio 🍧");
+        return;
+    }
+
+    if (checkoutState.type === "delivery") {
+        const street = document.getElementById("street").value.trim();
+        const district = document.getElementById("district").value.trim();
+        const cep = document.getElementById("zipcode").value.trim();
+
+        if (!street || !district || !cep) {
+            alert("Preencha o endereço para entrega 🚚");
+            return;
+        }
+
+        checkoutState.address = { street, district, cep };
+    }
+
+    finalizeOrder();
+});
+
+function finalizeOrder() {
+    const order = {
+        items: cartState.items,
+        deliveryType: checkoutState.type,
+        address: checkoutState.address,
+        total: checkoutState.type === "delivery"
+            ? cartState.total + 5
+            : cartState.total
+    };
+
+    console.log("Pedido final:", order);
+
+    alert("Pedido confirmado! 🚀");
+}
 
