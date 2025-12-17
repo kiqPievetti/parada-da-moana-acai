@@ -88,4 +88,65 @@ addToCartBtn.addEventListener("click", () => {
     console.log("Açaí montado:", acaiState);
 });
 
+const cartState = {
+    items: [],
+    total: 0
+};
+
+addToCartBtn.addEventListener("click", () => {
+    if (!acaiState.size || !acaiState.base) {
+        alert("Escolha o tamanho e a base do açaí 🍧");
+        return;
+    }
+
+    cartState.items.push(structuredClone(acaiState));
+    updateCart();
+    resetBuilder();
+});
+
+function resetBuilder() {
+    document.querySelectorAll(".option, .addon input").forEach(el => {
+        el.classList.remove("active");
+        if (el.type === "checkbox") el.checked = false;
+    });
+
+    acaiState.size = null;
+    acaiState.base = null;
+    acaiState.addons = [];
+    acaiState.total = 0;
+
+    updateUI();
+}
+
+const cartItemsEl = document.querySelector(".cart-items");
+const cartTotalEl = document.getElementById("cart-total");
+
+function updateCart() {
+    cartItemsEl.innerHTML = "";
+    cartState.total = 0;
+
+    cartState.items.forEach((item, index) => {
+        cartState.total += item.total;
+
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+
+        div.innerHTML = `
+            <strong>${item.size.label}</strong>
+            <p>${item.base}</p>
+            <small>${item.addons.map(a => a.name).join(", ")}</small>
+            <span>${item.total.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            })}</span>
+        `;
+
+        cartItemsEl.appendChild(div);
+    });
+
+    cartTotalEl.innerText = cartState.total.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
 
