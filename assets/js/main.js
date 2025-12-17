@@ -181,6 +181,16 @@ function loadCart() {
     }
 }
 saveCart();
+showFeedback();
+
 document.addEventListener("DOMContentLoaded", loadCart);
+const feedbackEl = document.getElementById("cart-feedback");
+
+function showFeedback() {
+    feedbackEl.classList.add("show");
+    setTimeout(() => {
+        feedbackEl.classList.remove("show");
+    }, 1500);
+}
 
 
