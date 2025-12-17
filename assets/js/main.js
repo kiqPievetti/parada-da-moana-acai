@@ -165,5 +165,22 @@ function attachRemoveEvents() {
     });
 }
 
+const CART_KEY = "acai_cart";
+
+function saveCart() {
+    localStorage.setItem(CART_KEY, JSON.stringify(cartState));
+}
+
+function loadCart() {
+    const saved = localStorage.getItem(CART_KEY);
+    if (saved) {
+        const data = JSON.parse(saved);
+        cartState.items = data.items || [];
+        cartState.total = data.total || 0;
+        updateCart();
+    }
+}
+saveCart();
+document.addEventListener("DOMContentLoaded", loadCart);
 
 
