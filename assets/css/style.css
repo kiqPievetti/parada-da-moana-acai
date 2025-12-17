@@ -291,3 +291,23 @@ section {
     flex-direction: column;
     gap: 4px;
 }
+
+.cart-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remove-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-muted);
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.remove-btn:hover {
+    color: #ff5f5f;
+    transform: scale(1.2);
+}
